@@ -112,6 +112,91 @@ function drawBricks() {
         }
     }
 }
+// Crear una función para mostrar la puntuación
+function drawScore() {
+    ctx.font = "18px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("Puntuación: " + score, 8, 20); // Puntuación de posición en 8,20 en el eje x,y
+}
+
+// Detecciones de colisiones para los ladrillos
+function collisionDetection() {
+    for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+            let b = bricks[c][r];
+            if (b.status === 1) {
+                if (
+                    x > b.x &&
+                    x < b.x + brickWidth &&
+                    y > b.y &&
+                    y < b.y + brickHeight
+                ) {
+                    dy = -dy;
+                    b.status = 0;
+                    score++;
+                    if (score === brickRowCount * brickColumnCount) {
+                        alert("¡Felicidades! ¡Has ganado!");
+                        document.location.reload();
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+function draw() {
+    // Limpiar el canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawScore();
+    drawBricks();
+    drawBall();
+    drawPaddle();
+    collisionDetection();
+
+    //Calcular detecciones de colisiones con las paredes
+
+    //Para paredes izquierda y derecha
+
+    if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+    }
+
+    //Para pared superior
+    if (y + dy < ballRadius) {
+        dy = -dy;
+    } else if (y + dy > canvas.height - ballRadius) {
+        //Para la paleta
+        if (x > paddleX && x < paddleX + paddleWidth) {
+            dy = -dy;
+        } else {
+            //Si la pelota toca la parte inferior del canvas, se acaba el juego
+            alert("GAME OVER");
+            document.location.reload();
+        }
+    }
+
+    // Para paredes inferiores
+    if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+        dy = -dy;
+    }
+
+    // Haz que la paleta se mueva
+    if (rightPressed && paddleX < canvas.width - paddleWidth) {
+        paddleX += 7;
+    } else if (leftPressed && paddleX > 0) {
+        paddleX -= 7;
+    }
+
+    // Hacer que la pelota se mueva
+    x += dx;
+    y += dy;
+}
+
+// Llamar a la función draw cada 10 milisegundos
+setInterval(draw, 10);
+
 
 
 
