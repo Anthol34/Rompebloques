@@ -1,0 +1,112 @@
+/* Contenedor Principal */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #0a0b1e;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* El Tablero (Canvas) */
+canvas {
+  background-color: #020323;
+  border: 4px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(102, 0, 204, 0.5);
+  cursor: none; /* Oculta el mouse mientras juegas */
+}
+
+/* Capa Superpuesta (Menús) */
+.overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(2, 3, 35, 0.95); /* Fondo casi opaco */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+/* Botones */
+.btn-primary, .btn-secondary {
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  transition: transform 0.2s;
+  width: 200px;
+}
+
+.btn-primary {
+  background-color: #6600cc;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid #6600cc;
+  color: white;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+  transform: scale(1.05);
+}
+
+/* Tabla de Puntuaciones */
+.high-scores {
+  margin-top: 20px;
+  text-align: center;
+  width: 80%;
+}
+
+.high-scores table {
+  margin: 10px auto;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 300px;
+}
+
+.high-scores td, .high-scores th {
+  border-bottom: 1px solid #444;
+  padding: 8px;
+  text-align: center;
+  color: #ccc;
+}
+
+.high-scores th {
+  color: #adff2f;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+/* Input para Nuevo Récord */
+.input-name {
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 2px solid #adff2f;
+  background: #000;
+  color: white;
+  text-align: center;
+  margin-bottom: 15px;
+  outline: none;
+}
+
+/* Instrucciones */
+.instructions-box {
+  max-width: 400px;
+  text-align: left;
+  line-height: 1.6;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
